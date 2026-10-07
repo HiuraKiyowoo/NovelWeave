@@ -49,3 +49,14 @@ If the user hands over an EPUB/PDF already translated to Indonesian, or a human-
 (Kaori, zerokaito, ruidrive) carries it, use that path (`naver-panen-sumber-blogger`) and do not
 MTL. Confirming the container's own language (`content.opf` `<dc:language>` for EPUB; `<title>`
 + body for a web page) is step zero of every job.
+
+
+## 4. Metadata is not guaranteed by the raw page
+
+A chapter page may have no synopsis, or only a teaser for a different edition. Check the exact work landing page, official platform metadata, publisher series page, and a licensed catalog separately. If no trustworthy synopsis exists, leave the public field empty and report that it is unavailable; never manufacture a plot summary from a few chapter lines.
+
+When a local Indonesian title is not the official display title, use a verified English title or romanji in the public `judul` field and keep the Indonesian wording as a private alias. Do not guess an ATL. Full rules: `title-metadata-policy.md`.
+
+## 5. Rights are a separate gate from discoverability
+
+A reachable raw or a translation-group mirror is not automatically publishable. Do not bypass access controls or publish a third-party translation without permission. Keep source URLs, group names, and translator credits out of public text and metadata; retain them only in a private rights/provenance manifest. See `safety-and-rights.md`.

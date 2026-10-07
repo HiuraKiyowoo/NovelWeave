@@ -64,3 +64,8 @@ in-place patch is strictly smaller and verifiable.
 See SKILL.md's resume section for the three defects that make `--lanjut` destructive. The rule here
 is a sibling: corruption from a bad failure branch is INVISIBLE to the resume (chapter marked
 done), so a residue sweep must run after every long MTL session, not only when something looks wrong.
+
+
+## Resumability is a data contract
+
+A retryable chunk must retain its source text, index, source hash, endpoint/model, attempt history, and failure body. Save it atomically as it completes and keep a manifest of completed/failed chunks. A rate-limit or quota failure pauses the run; it does not clear the manifest. See `resumable-mtl-runs.md` for the resume checklist.

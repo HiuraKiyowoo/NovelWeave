@@ -3,6 +3,20 @@
 Depth for the "Model endpoint" section of SKILL.md. Load this when a translate run fails,
 stalls, returns nonsense, or when you need to pick a model/endpoint for a new novel.
 
+## Hard rule: the local gateway is not the batch MTL route
+
+`http://localhost:20128/v1` is a local model gateway, not a proven translation service. Do **not** send a novel batch to it because the URL exists or because `/models` returns a model name. In this project it has returned literary continuations and menus instead of translations. A route is usable only after a fresh real-sized prose probe passes the translation-only gate.
+
+Before a batch:
+
+1. `GET <base>/models` or `<base>/v1/models` and record the endpoint + model id;
+2. send one real-sized block (not a greeting and not one sentence);
+3. reject any continuation, menu, refusal, or source-script output;
+4. inspect rate-limit/quota headers and provider allowance status;
+5. set a conservative batch cap and save progress per chunk.
+
+If quota is missing or unknown, do not launch a large batch. On 429/402/503 or an allowance message, pause and preserve completed chunks; do not restart the chapter or rotate around a provider limit.
+
 ## The model can fail in FOUR distinct ways — identify which before reacting
 
 Each maps to a different fix. Reading the wrong one sends you to fix the wrong thing.

@@ -1,6 +1,6 @@
-# Novel MTL Skill
+# NovelWeave
 
-Safe, resumable machine-translation workflow for rights-cleared novels. The skill now uses a dispatcher flow instead of a flat collection of rules:
+NovelWeave is a safe, resumable novel localization workflow for rights-cleared novels. The skill now uses a dispatcher flow instead of a flat collection of rules:
 
 ```text
 Intake/Rights
@@ -22,14 +22,14 @@ Intake/Rights
 ## Install with npx skills
 
 ```bash
-npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill
+npx skills add https://github.com/HiuraKiyowoo/NovelWeave
 ```
 
 Install only the MTL skill to Hermes Agent:
 
 ```bash
-npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill \
-  --skill novel-mtl-self-translation \
+npx skills add https://github.com/HiuraKiyowoo/NovelWeave \
+  --skill novel-weave \
   --agent hermes-agent \
   --global \
   --copy \
@@ -39,12 +39,12 @@ npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill \
 Update an existing installation:
 
 ```bash
-npx skills update novel-mtl-self-translation
+npx skills update novel-weave
 ```
 
 ## Available skills
 
-- `novel-mtl-self-translation` — dispatcher for the complete 14-phase workflow;
+- `novel-weave` — dispatcher for the complete 14-phase workflow;
 - `novel-split-clean` — split and clean already-extracted novel text.
 
 ## Important safety rules
@@ -59,9 +59,9 @@ npx skills update novel-mtl-self-translation
 ## Repository layout
 
 ```text
-novel-mtl-skill/
+NovelWeave/
 ├── README.md
-├── novel-mtl-self-translation/
+├── novel-weave/
 │   ├── SKILL.md                 # dispatcher flow
 │   ├── references/              # branch-specific procedures and QA
 │   └── scripts/                 # deterministic preflight utilities

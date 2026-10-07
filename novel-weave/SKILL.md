@@ -1,5 +1,5 @@
 ---
-name: novel-mtl-self-translation
+name: novel-weave
 description: "Safe, resumable machine-translation workflow for rights-cleared novels: rights check, DB preflight, metadata/source verification, adaptive parsing, quota-aware translation, QA, staging, and controlled promotion."
 license: MIT
 metadata:
@@ -7,7 +7,7 @@ metadata:
     tags: [mtl, novel, translation, light-novel, pdf, epub, sqlite, staging, qa]
 ---
 
-# Novel MTL — dispatcher workflow
+# NovelWeave — novel localization dispatcher
 
 Use this skill for translating a rights-cleared novel into Indonesian and loading it safely into a novel archive. Execute the phases in order. **A failed gate is a stop condition, not an invitation to improvise.** Keep source URLs, translator/group names, private provenance, and raw manuscripts out of public output.
 
@@ -170,12 +170,12 @@ Never hide a blocker by inventing metadata, changing a slug, deleting a scene, s
 
 ```bash
 # list the package
-npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill --list
+npx skills add https://github.com/HiuraKiyowoo/NovelWeave --list
 
 # install/update this skill in Hermes
-npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill \
-  --skill novel-mtl-self-translation --agent hermes-agent --global --copy --yes
-npx skills update novel-mtl-self-translation
+npx skills add https://github.com/HiuraKiyowoo/NovelWeave \
+  --skill novel-weave --agent hermes-agent --global --copy --yes
+npx skills update novel-weave
 
 # DB preflight and backup
 python scripts/check-db-duplicates.py /path/to/naver.db --slug <slug> --title <title>

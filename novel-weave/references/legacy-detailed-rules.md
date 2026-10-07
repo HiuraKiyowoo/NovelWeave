@@ -5,7 +5,7 @@
 This archive contains the previous long-form workflow and diagnostic notes. Search by the relevant phase: rights, endpoint/model, source, parser, chunk, glossary, QA, DB, or repair.
 
 ---
-name: novel-mtl-self-translation
+name: novel-weave
 description: "Safe, resumable machine-translation pipeline for rights-cleared novels, with source verification, quota preflight, parser adaptation, and staging-first DB import."
 version: 1.1.0
 author: Hermes Agent

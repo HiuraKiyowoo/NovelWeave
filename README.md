@@ -1,21 +1,31 @@
 # Novel MTL Skill
 
-Safe, resumable machine-translation workflow for rights-cleared novels. The package covers source verification, title/synopsis metadata, adaptive PDF/EPUB/web parsing, endpoint and quota preflight, chunk resume, staging-first SQLite import, and post-import verification.
+Safe, resumable machine-translation workflow for rights-cleared novels. The skill now uses a dispatcher flow instead of a flat collection of rules:
+
+```text
+Intake/Rights
+→ DB Preflight
+→ Work + Metadata
+→ Source Verification
+→ Extract
+→ Parse
+→ Chunk + Glossary
+→ Endpoint/Quota
+→ Translate + Resume
+→ Text QA
+→ Stage
+→ Staging QA
+→ Backup + Promote
+→ Public Audit
+```
 
 ## Install with npx skills
-
-Interactive install:
 
 ```bash
 npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill
 ```
 
-Choose the skill you need in the terminal UI:
-
-- `novel-mtl-self-translation` — end-to-end novel MTL pipeline;
-- `novel-split-clean` — inspect and clean already-extracted novel text.
-
-Install only the MTL skill globally to Hermes Agent:
+Install only the MTL skill to Hermes Agent:
 
 ```bash
 npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill \
@@ -26,27 +36,25 @@ npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill \
   --yes
 ```
 
-List available skills without installing:
-
-```bash
-npx skills add https://github.com/HiuraKiyowoo/novel-mtl-skill --list
-```
-
 Update an existing installation:
 
 ```bash
 npx skills update novel-mtl-self-translation
 ```
 
+## Available skills
+
+- `novel-mtl-self-translation` — dispatcher for the complete 14-phase workflow;
+- `novel-split-clean` — split and clean already-extracted novel text.
+
 ## Important safety rules
 
 - MTL only text that is owned, licensed, public-domain, authorized, or an official author upload whose terms allow the intended use.
 - Do not bypass DRM, paywalls, access controls, anti-bot measures, or rate limits.
-- Do not publish a third-party human translation without permission.
+- Already-Indonesian or third-party human-translated input follows the verify → quarantine → stage → approval branch; it is not sent through MTL.
 - Keep source URLs and translator/group provenance private; never put them in public chapter text, synopsis, HTML, or API output.
 - `localhost:20128` is not assumed to be an MTL endpoint. Probe the real endpoint/model and quota before a batch.
 - Check title and slug across every DB before insert, back up the DB, stage first, and verify before promotion.
-- A missing synopsis stays empty; never fabricate one.
 
 ## Repository layout
 
@@ -54,11 +62,11 @@ npx skills update novel-mtl-self-translation
 novel-mtl-skill/
 ├── README.md
 ├── novel-mtl-self-translation/
-│   ├── SKILL.md
-│   ├── references/
-│   └── scripts/
+│   ├── SKILL.md                 # dispatcher flow
+│   ├── references/              # branch-specific procedures and QA
+│   └── scripts/                 # deterministic preflight utilities
 └── novel-split-clean/
     └── SKILL.md
 ```
 
-This project is a workflow/documentation skill. It does not grant permission to copy, translate, or publish copyrighted text.
+The skill is a workflow/documentation package. It does not grant permission to copy, translate, or publish copyrighted text.

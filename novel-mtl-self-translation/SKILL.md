@@ -79,9 +79,9 @@ Read as needed: `references/pdf-raw-extraction.md`, `references/epub-import.md`,
 
 Probe the raw before choosing a splitter. Test single newline versus blank line, HTML headings, EPUB `h1`, form-feed `\f`, and source-specific chapter markers. Treat `＊＊＊`, `***`, and horizontal rules as scene separators, not chapters. Separate TOC/nav/colophon from real prose using following-content length and sample reconstruction. If a real chapter title is unavailable, use `Bab N` with the counter restarting **per volume**; keep global ordering separately.
 
-Never apply a global “merge short lines” rule without checking dialogue/quote state. It can destroy dialogue and epigraphs.
+Never apply a global “merge short lines” rule without checking dialogue/quote state. It can destroy dialogue and epigraphs. Preserve RAW paragraph boundaries, separate only clearly marked dialogue turns, and never add decorative line breaks.
 
-Read: `references/parser-adaptation.md`, `references/source-shipped-as-volume.md`, `references/warehouse-volume-assembly.md`, `references/pdf-raw-to-chapters.md`.
+Read: `references/parser-adaptation.md` and `references/text-structure-and-formatting.md`, `references/source-shipped-as-volume.md`, `references/warehouse-volume-assembly.md`, `references/pdf-raw-to-chapters.md`.
 
 ### 7. Plan chunks and glossary
 
@@ -116,7 +116,9 @@ Run independent QA over the joined output, not only the pipeline's `selesai` fla
 - quote pairing/style matches the archive;
 - scene separators preserved exactly once;
 - first and last paragraphs are real story content;
-- chapter and volume counts reconcile with the source.
+- chapter and volume counts reconcile with the source;
+- RAW paragraph/dialogue/heading/scene-break token order is unchanged;
+- no arbitrary line breaks or global whitespace collapse changed the structure.
 
 Inspect raw output before any destructive normalizer. Apply register/quote/separator normalization at most once, back up first, then re-run QA. Read: `references/glossary-and-consistency.md`, `references/qa-checklist.md`, `references/verifying-and-repairing-novel-text.md`, `references/cleaning-scraped-chapter-text.md`.
 
@@ -185,7 +187,7 @@ python scripts/backup-sqlite.py /path/to/naver.db --reason before-novel-import
 - **Rights and public safety:** `safety-and-rights.md`, `public-output-audit.md`
 - **Decision branches:** `human-translation-flow.md`, `web-vs-print.md`
 - **Metadata/source:** `title-metadata-policy.md`, `verifying-a-novels-title.md`, `source-selection.md`
-- **Extraction/parsing:** `pdf-raw-extraction.md`, `epub-import.md`, `parser-adaptation.md`, `pdf-raw-to-chapters.md`
+- **Extraction/parsing:** `pdf-raw-extraction.md`, `epub-import.md`, `parser-adaptation.md`, `text-structure-and-formatting.md`, `pdf-raw-to-chapters.md`
 - **Translation runtime:** `mtl-endpoint-and-model-selection.md`, `resumable-mtl-runs.md`, `chunk-failure-handling.md`, `glossary-and-consistency.md`, `jp-to-id-translation.md`
-- **QA/import:** `qa-checklist.md`, `verifying-and-repairing-novel-text.md`, `db-change-safety.md`, `mtl-cover-and-assets.md`
+- **QA/import:** `qa-checklist.md`, `text-structure-and-formatting.md`, `verifying-and-repairing-novel-text.md`, `db-change-safety.md`, `mtl-cover-and-assets.md`
 - **Deep edge cases:** `raw-source-map.md`, `web-novel-raw-sources.md`, `third-language-raw-sources.md`, `warehouse-volume-assembly.md`, `legacy-detailed-rules.md` (read only when a case is not covered above).

@@ -28,6 +28,10 @@ Run this checklist independently of the translation loop. Save the report with t
 [ ] register, tense, voice, and honorifics match the shelf
 [ ] quote pairs are balanced and style is consistent
 [ ] first and last paragraphs are real story content
+[ ] each RAW paragraph maps to one output paragraph unless a hard-wrap repair is documented
+[ ] narration and clearly marked dialogue turns are separate; no invented line breaks
+[ ] heading/chapter-marker/scene-break token order matches RAW
+[ ] whitespace cleanup did not alter paragraph boundaries or story order
 ```
 
 ## Staging DB
